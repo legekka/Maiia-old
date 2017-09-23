@@ -1,0 +1,16 @@
+{
+    "discord": {
+        "id": "<bot id>",
+        "token": "<discord token>"
+    },
+    "osuirc": {
+        "username": "<username>",
+        "password": "<password>"
+    },
+    "osutrack": {
+        "apikey": "<apikey>"
+    },
+    "frame": {
+        "key": "<websocket key>"
+    }
+}
