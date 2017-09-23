@@ -3,8 +3,18 @@
 
 var console = require('./modules/console.js');
 var core = require('./core.js');
-core.initialize();
+var c = require('chalk');
+console.maiia('Initializing core...');
+core.init();
+console.maiia('Loading modules...');
 
-core.set("discord.teszt", "tesztszöveg");
-console.log(core.get());
-process.exit(2);
+console.maiia(`[${c.green("Processhandler")}]`);
+require('./modules/processhandler.js').init();
+console.maiia(`[${c.green("Jsconsole")}]`);
+require('./modules/jsconsole.js').init();
+if (core.get("autorun.discord")) {
+    console.maiia(`[${c.green("Discord")}]`);
+    require("./modules/discord.js").init();
+} else {
+    console.maiia(`[${c.red("Discord")}]`);
+}

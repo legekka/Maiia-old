@@ -6,7 +6,7 @@ var console = require('./modules/console.js');
 var core;
 
 module.exports = {
-    initialize: () => {
+    init: () => {
         core = JSON.parse(fs.readFileSync('./init.json').toString());
     },
     get: (property) => {

@@ -20,6 +20,10 @@ module.exports = {
         console.log(`[${time("time")}] [${c.magenta("Maiia")}]: ${text}`)
         return;
     },
+    discord: (text) => {
+        console.log(`[${time("time")}] [${c.gray("Discord")}]: ${text}`)
+        return;
+    },
     debug: (text) => {
         console.log(`[${time("time")}] [${c.yellow("DEBUG")}]: ${text}`);
         return;

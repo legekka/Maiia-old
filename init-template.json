@@ -1,4 +1,7 @@
 {
+    "autorun": {
+        "discord": true
+    },
     "discord": {
         "id": "<bot id>",
         "token": "<discord token>"
