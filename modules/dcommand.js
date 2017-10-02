@@ -30,7 +30,7 @@ module.exports = (message) => {
                 isAcommand = true;
             }
             else {
-                message.channel.send('Nincs ilyen parancs.');
+                message.channel.send('Nope.');
                 /*reqreload('./talk.js').wrongcommand(message);*/
             }
         } /*else if (message.author.id != core.discord.creatorID) {
