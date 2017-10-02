@@ -14,7 +14,7 @@ module.exports =
             console.discord(`${chname} ${message.author.username}: ${c.grey(msg)}`);
         } else {
             if (require('../core.js').get("discord.channels.current") == message.channel.id) {
-                console.discord(`${chname} ${message.author.username}: ${c.grey(msg)}`);
+                console.discord(`${c.yellow(chname)} ${c.cyan(message.author.username)}: ${c.grey(msg)}`);
             } else if (isAcommand) {
                 console.discord(c.grey(`${chname} ${message.author.username}: ${msg}`));
             }
