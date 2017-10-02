@@ -82,7 +82,7 @@ module.exports = {
     level: (userID, guildID) => {
         if (require('../core.js').get("discord.creatorID") == userID)
             return 3;
-        else if (core.discord.ownerID == userID)
+        else if (require('../core.js').get("discord.ownerID") == userID)
             return 2;
         else if (contains(guildID, "admins", userID))
             return 1;
