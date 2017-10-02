@@ -7,7 +7,7 @@ var c = require('chalk');
 
 module.exports = (message, isAcommand) => {
     let chname;
-    !message.channel.id ? chname = "#private#" : chname = '#' + message.channel.name + '@' + message.channel.guild.name;
+    message.channel.type == "dm" ? chname = "#private#" : chname = '#' + message.channel.name + '@' + message.channel.guild.name;
     message.content != '' ? msg = message.content : msg = '<attachment>';
     if (chname == "#private#") {
         console.discord(`${c.green(chname)} ${userColor(message.author.username)}: ${c.grey(msg)}`);
