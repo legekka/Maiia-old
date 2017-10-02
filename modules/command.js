@@ -6,8 +6,43 @@ var console = require('./console.js');
 var core = require('../core.js').get();
 
 module.exports = {
+    help: {
+        level: 0, 
+        help: "!help|Leírás Maiia parancsaihoz.", 
+        run: (message) => {
+            req('./help.js').list(message, module.exports, (list) => {
+                var str = '';
+                for (i in list) {
+                    str += '`!' + list[i].cmd + '` - *' + list[i].desc + '*\n';
+                }
+                while (str.replace('!', core.discord.dsettings.getCmdpref(message.guild.id)) != str) {
+                    str = str.replace('!', core.discord.dsettings.getCmdpref(message.guild.id));
+                }
+                message.channel.send({
+                    embed: {
+                        'title': 'Parancsok',
+                        'description': str
+                    }
+                })
+            });
+        }
+    },
+    checkcache: {
+        level: 1,
+        help: '!checkcache|Cache mappa mérete.',
+        run: (message) => {
+            req('./cachemanager.js').check(message);
+        }
+    },
+    delcache: {
+        level: 1,
+        help: '!delcache|Cache mappa tartalmának ürítése.',
+        run: (message) => {
+            req('./cachemanager.js').del(message)
+        }
+    },
     close: {
-        level: 3,
+        level: 2,
         help: "!close|Maiia leállítása.",
         run: (message) => {
             message.channel.send("Leállítás...");
@@ -15,7 +50,7 @@ module.exports = {
         }
     },
     reload: {
-        level: 2,
+        level: 1,
         help: "!reload|Maiia újraindítása.",
         run: (message) => {
             message.channel.send("Újraindítás...");
@@ -23,7 +58,7 @@ module.exports = {
         }
     },
     motd: {
-        level: 3,
+        level: 2,
         help: "!motd|'playing <game>' megváltoztatására. !motd <szó>",
         run: (message) => {
             motd = message.content.substr(message.content.split(' ')[0].length + 1);
@@ -32,7 +67,7 @@ module.exports = {
 
     },
     addadmin: {
-        level: 2,
+        level: 1,
         help: "!addadmin|Admin hozzáadása Maiiához.",
         run: (message) => {
             
@@ -51,7 +86,7 @@ module.exports = {
         }
     },
     remadmin: {
-        level: 2,
+        level: 1,
         help: "!remadmin|Adminok eltávolitása.",
         run: (message) => {
             //let core = require('../core.js').get();

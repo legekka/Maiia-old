@@ -24,7 +24,18 @@ module.exports = {
             }
         });
         bot.on('message', (message) => {
-            req("./dcommand.js")(message);
+            let isAcommand = req("./dcommand.js")(message);
+            req("./webpconvert.js").createEntry(message);
+
+            req('./log.js')(message, isAcommand);
+        });
+        // webpconvert
+        bot.on('messageReactionAdd', (messageReaction, user) => {
+            if (messageReaction.emoji == core.discord.bot.emojis.find('name', 'hypressed')) {
+                if (user.id != core.discord.id) {
+                    req('./webpconvert.js').execEntry(messageReaction.message, user);
+                }
+            }
         });
         bot.on('disconnected', () => {
             console.discord('Disconnected.');

@@ -2,19 +2,25 @@
 // main program of Maiia
 
 var console = require('./modules/console.js');
-var core = require('./core.js');
 var c = require('chalk');
 console.maiia('Initializing core...');
-core.init();
+require('./core.js').init();
 console.maiia('Loading modules...');
+var core = require('./core.js').get();
 
-console.maiia(`[${c.green("Processhandler")}]`);
+console.maiia(`[${c.green("  OK  ")}] Processhandler`);
 require('./modules/processhandler.js').init();
-console.maiia(`[${c.green("Jsconsole")}]`);
+console.maiia(`[${c.green("  OK  ")}] JSconsole`);
 require('./modules/jsconsole.js').init();
-if (core.get("autorun.discord")) {
-    console.maiia(`[${c.green("Discord")}]`);
+if (core.autorun.discord) {
+    console.maiia(`[${c.green("  OK  ")}] Discord`);
     require("./modules/discord.js").init();
 } else {
-    console.maiia(`[${c.red("Discord")}]`);
+    console.maiia(`[${c.grey("  --  ")}] Discord`);
+}
+if (core.autorun.cachemanager) {
+    console.maiia(`[${c.green("  OK  ")}] CacheManager`);
+    require("./modules/cachemanager.js").init();
+} else {
+    console.maiia(`[${c.grey("  --  ")}] CacheManager`);
 }

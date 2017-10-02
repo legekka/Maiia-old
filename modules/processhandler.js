@@ -20,8 +20,14 @@ module.exports = {
                 });
             }
 
+            let cachemanager = core.cachemanager.interval ? true : false;
+            if (cachemanager)  {
+                clearInterval(core.cachemanager.interval);
+                console.maiia('CacheManager interval cleared.');
+                cachemanager = false;
+            }
             var shutdownInterval = setInterval(() => {
-                if (!discord) {
+                if (!discord && !cachemanager) {
                     console.maiia('Every subprocess have been stopped.')
                     process.exit(code);
                 }

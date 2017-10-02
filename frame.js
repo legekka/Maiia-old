@@ -105,6 +105,8 @@ function inpdata(data) {
                 log('Closing frame...');
                 process.exit(2);
             }
+        } else {
+            log('Error: Command not found.');
         }
     }
 }
