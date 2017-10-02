@@ -79,8 +79,8 @@ module.exports = {
     removeAdmin: (guildID, id) => removeValue(guildID, "admins", id),
     hasAdmin: (guildID, id) => contains(guildID, "admins", id),
     admins: (guildID) => get(guildID).admins,
-    level: (core, userID, guildID) => {
-        if (core.discord.creatorID == userID)
+    level: (userID, guildID) => {
+        if (require('../core.js').get("discord.creatorID") == userID)
             return 3;
         else if (core.discord.ownerID == userID)
             return 2;

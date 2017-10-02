@@ -6,15 +6,15 @@ var console = require('./console.js');
 module.exports = {
     init: () => {
         let EventEmitter = require('events')
-        let core = require('../core.js');
-        core.set("processhandler", new EventEmitter);
-        let processhandler = core.get("processhandler");
+        let core = require('../core.js').get();
+        core.processhandler = new EventEmitter;
+        let processhandler = core.processhandler;
         processhandler.on("exit", (code) => {
 
-            let discord = core.get("discord.active");
+            let discord = core.discord.active;
             if (discord) {
                 console.discord("Shutting down...")
-                core.get("discord.bot").destroy().then(() => {
+                core.discord.bot.destroy().then(() => {
                     console.discord("Closed.");
                     discord = false;
                 });

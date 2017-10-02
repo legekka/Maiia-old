@@ -9,29 +9,25 @@ var c = require('chalk');
 
 module.exports = {
     init: () => {
-        let core = require('../core.js');
-        core.set("discord.bot", new Discord.Client());
-        let bot = core.get('discord.bot');
+        let core = require('../core.js').get();
+        core.discord.bot = new Discord.Client();
+        let bot = core.discord.bot;
         let channels = JSON.parse(fs.readFileSync('./data/discord.json').toString()).channels;
-        console.log(channels);
-        core.set("discord.channels", channels);
-        core.set("discord.channels.current", channels.main);
-        bot.login(core.get('discord.token'));
+        core.discord.channels = channels;
+        core.discord.channels.current = channels.main;
+        bot.login(core.discord.token);
         bot.on('ready', () => {
-            if (!core.get("discord.active")) {
-                core.set("discord.active", true);
+            if (!core.discord.active) {
+                core.discord.active = true;
                 console.discord('Online');
                 bot.channels.get(channels.main).send("Online!");
             }
         });
         bot.on('message', (message) => {
-            if (message.content == "!ping") {
-                message.channel.send("Pong.");
-            } else if (message.content == "!close") {
-                core.get("processhandler").emit("exit", 2);
-            } else if (message.content == "!reload") {
-                core.get("processhandler").emit("exit", 3);
-            }
+            req("./dcommand.js")(message);
+        });
+        bot.on('disconnected', () => {
+            console.discord('Disconnected.');
         });
     }
 }

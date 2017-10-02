@@ -85,8 +85,8 @@ function inpdata(data) {
         } else if (cmd == '!reload-frame') {
             if (childproc) {
                 log('Closing Maiia...')
+                log('Reloading frame in 5 seconds...');
                 setTimeout(() => {
-                    log('Reloading frame in 5 seconds...');
                     process.exit(1);
                 }, 5000);
             } else {
@@ -96,9 +96,9 @@ function inpdata(data) {
         } else if (cmd == '!close-frame') {
             if (childproc) {
                 log('Closing Maiia...');
+                log('Closing frame in 5 seconds...');
                 childproc.stdin.write('close');
                 setTimeout(() => {
-                    log('Closing frame in 5 seconds...');
                     process.exit(2);
                 }, 5000);
             } else {

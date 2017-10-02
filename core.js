@@ -8,6 +8,7 @@ var core;
 module.exports = {
     init: () => {
         core = JSON.parse(fs.readFileSync('./init.json').toString());
+        core.discord.dsettings = require('./modules/dsettings.js');
     },
     get: (property) => {
         if (property) {
@@ -17,6 +18,7 @@ module.exports = {
         }
     },
     set: (property, value) => {
-        eval("core." + property + ' = value;')
+        //eval("core." + property + ' = value;');
+
     }
 }
