@@ -30,9 +30,11 @@ module.exports = (message) => {
                 isAcommand = true;
             }
             else {
-                message.channel.send('Nope.');
+                message.channel.send('Nincs megfelelő jogosultságod.');
                 /*reqreload('./talk.js').wrongcommand(message);*/
             }
+        } else {
+            message.channel.send('Nincs ilyen parancs..');
         } /*else if (message.author.id != core.discord.creatorID) {
             reqreload('./talk.js').wrongcommand(message);
         }*/
