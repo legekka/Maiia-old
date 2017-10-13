@@ -59,7 +59,7 @@ module.exports = {
 
     },
     execEntry: (message, user) => {
-        console.maiia(c.gray(`webpconvert requested by ${user.username}#${user.discriminator}`));
+        console.discord(c.gray(`webpconvert requested by ${user.username}#${user.discriminator}`));
         var link;
         var ext;
         if (message.attachments.first() != undefined) {
@@ -80,19 +80,13 @@ module.exports = {
             if (link.toLowerCase().indexOf('https') >= 0) {
                 httpsGet(link, filepath1, () => {
                     webp.cwebp(filepath1, filepath2, "-q 95", () => {
-                            user.send({ files: [filepath2] }).then(() => {
-                                //fs.unlinkSync(filepath1);
-                                //fs.unlinkSync(filepath2);
-                            });
+                            user.send({ files: [filepath2] });
                     })
                 })
             } else {
                 httpGet(link, filepath1, () => {
                     webp.cwebp(filepath1, filepath2, "-q 95", () => {
-                            user.send({ files: [filepath2] }).then(() => {
-                                //fs.unlinkSync(filepath1);
-                                //fs.unlinkSync(filepath2);
-                            });
+                            user.send({ files: [filepath2] });
                     })
                 })
             }

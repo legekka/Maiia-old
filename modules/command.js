@@ -7,8 +7,8 @@ var core = require('../core.js').get();
 
 module.exports = {
     help: {
-        level: 0, 
-        help: "!help|Leírás Maiia parancsaihoz.", 
+        level: 0,
+        help: "!help|Leírás Maiia parancsaihoz.",
         run: (message) => {
             req('./help.js').list(message, module.exports, (list) => {
                 var str = '';
@@ -70,7 +70,7 @@ module.exports = {
         level: 1,
         help: "!addadmin|Admin hozzáadása Maiiához.",
         run: (message) => {
-            
+
             let hls = message.mentions.members;
             if (hls.size == 0) {
                 message.channel.send("Érvénytelen highlight.");
@@ -115,6 +115,25 @@ module.exports = {
             } else {
                 message.channel.send(`Adminjaim: \`${admins.join('`, `')}\` `);
             }
+        }
+    },
+    ircto: {
+        level: 2,
+        help: "!to|osu!irc címzett váltása.",
+        run: (message) => {
+            message.delete();
+            core.osuirc.channel = message.content.substr(core.discord.dsettings.getCmdpref(message.guild.id).length + 3);
+            message.channel.send('[IRC] Címzett: `' + core.osuirc.channel + '`');
+            core.discord.bot.channels.get(core.discord.channels.osuirc).setTopic("Current channel: " + core.osuirc.channel);
+        }
+    },
+    ircsay: {
+        level: 2,
+        help: "ircsay|osu!irc discord channelben automata üzenetküldés",
+        run: (message) => {
+            message.delete();
+            var text = message.content;
+            require('./osuirc.js').say(text);
         }
     }
 }

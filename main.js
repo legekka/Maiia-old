@@ -24,3 +24,9 @@ if (core.autorun.cachemanager) {
 } else {
     console.maiia(`[${c.grey("  --  ")}] CacheManager`);
 }
+if (core.autorun.osuirc) {
+    console.maiia(`[${c.green("  OK  ")}] osu!irc`);
+    require("./modules/osuirc.js").init();
+} else {
+    console.maiia(`[${c.grey("  --  ")}] osu!irc`);
+}

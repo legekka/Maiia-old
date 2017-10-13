@@ -22,9 +22,9 @@ maiia.on('start', () => {
         log('Error: Maiia is running.')
         return;
     }
-    childproc = exec('node ./main.js --color');     // starting childprocess
+    childproc = exec('node ./main.js --color --no-warnings');     // starting childprocess
     childproc.stdout.on('data', (data) => maiia.emit('data', data)); // initializing events
-    childproc.stderr.on('data', (error) => maiia.emit('error', error));
+    //childproc.stderr.on('data', (error) => maiia.emit('error', error));
     childproc.on('close', (code) => maiia.emit('exit', code))
 });
 
@@ -35,10 +35,10 @@ maiia.on('data', (data) => {
     }
 });
 
-maiia.on('error', (error) => {
+/*maiia.on('error', (error) => {
     log(`Error in Maiia: ${error}`);
 });
-
+*/
 maiia.on('exit', (code) => {
     switch (code) {
         // 2: stopping

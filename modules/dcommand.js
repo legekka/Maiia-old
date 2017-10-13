@@ -15,14 +15,13 @@ module.exports = (message) => {
     let isAcommand = false;
     let cmd = lower.split(' ')[0].substr(cmdpref.length).replace(':', '_');
 
-    /*if (core.osuirc.client != undefined && message.channel.id == core.discord.ch.osuirc && message.author.id == core.discord.ownerID) {
+    if (core.osuirc.active && message.channel.id == core.discord.channels.osuirc && message.author.id == core.discord.ownerID) {
         if (lower.startsWith(cmdpref + 'to')) {
-            commandModule.ircto.run(core, message);
+            commandModule.ircto.run(message);
         } else {
-            commandModule.ircsay.run(core, message);
+            commandModule.ircsay.run(message);
         }
-    } else */
-    if (message.content.startsWith(cmdpref)) {
+    } else if (message.content.startsWith(cmdpref)) {
         let command = commandModule[cmd];
         if (command) {
             if (dsettings.level(message.author.id, message.guild.id) >= command.level) {

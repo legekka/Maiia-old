@@ -10,7 +10,10 @@ module.exports = (message, isAcommand) => {
     message.channel.type == "dm" ? chname = "#private#" : chname = '#' + message.channel.name + '@' + message.channel.guild.name;
     message.content != '' ? msg = message.content : msg = '<attachment>';
     if (chname == "#private#") {
-        console.discord(`${c.green(chname)} ${userColor(message.author.username)}: ${c.grey(msg)}`);
+        if (message.author.id != require('../core.js').get("discord.id"))
+            console.discord(`${c.green(chname)} ${userColor(message.author.username)}: ${c.grey(msg)}`);
+        else
+            console.discord(`${c.green('>>' + message.channel.recipient.username)} ${userColor(message.author.username)}: ${c.grey(msg)}`);
     } else {
         if (require('../core.js').get("discord.channels.current") == message.channel.id) {
             console.discord(`${c.yellow(chname)} ${userColor(message.author.username)}: ${c.grey(msg)}`);
