@@ -14,7 +14,7 @@ console.maiia(`[${c.green("  OK  ")}] JSconsole`);
 require('./modules/jsconsole.js').init();
 if (core.autorun.discord) {
     console.maiia(`[${c.green("  OK  ")}] Discord`);
-    require("./modules/discord.js").init();
+    require("./modules/discord.js").init(); 
 } else {
     console.maiia(`[${c.grey("  --  ")}] Discord`);
 }
@@ -23,6 +23,12 @@ if (core.autorun.cachemanager) {
     require("./modules/cachemanager.js").init();
 } else {
     console.maiia(`[${c.grey("  --  ")}] CacheManager`);
+}
+if (core.autorun.memwatch) {
+    console.maiia(`[${c.green("  OK  ")}] MemWatch`);
+    require("./modules/memwatch.js").init();
+} else {
+    console.maiia(`[${c.grey("  --  ")}] MemWatch`);
 }
 if (core.autorun.osuirc) {
     console.maiia(`[${c.green("  OK  ")}] osu!irc`);

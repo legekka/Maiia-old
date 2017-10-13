@@ -29,16 +29,23 @@ module.exports = {
     },
     checkcache: {
         level: 1,
-        help: '!checkcache|Cache mappa mérete.',
+        help: "!checkcache|Cache mappa mérete.",
         run: (message) => {
             req('./cachemanager.js').check(message);
         }
     },
     delcache: {
         level: 1,
-        help: '!delcache|Cache mappa tartalmának ürítése.',
+        help: "!delcache|Cache mappa tartalmának ürítése.",
         run: (message) => {
             req('./cachemanager.js').del(message)
+        }
+    },
+    stats: {
+        level: 1,
+        help: "!stats|Maiia állapota.",
+        run: (message) => {
+            require('./memwatch.js').stats(message);
         }
     },
     close: {
