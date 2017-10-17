@@ -59,9 +59,8 @@ module.exports = {
             console.log(error.stack);
             if (core.discord.active) {
                 core.discord.bot.channels.get(core.discord.channels.error).send(`<@${core.discord.ownerID}> ${"```"}${error.stack}${"```"}`);
-            } else {
-                processhandler.emit("exit", 1)
             }
+            processhandler.emit("exit", 1);
         });
     }
 }
