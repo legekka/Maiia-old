@@ -48,6 +48,13 @@ module.exports = {
             require('./memwatch.js').stats(message);
         }
     },
+    ytdlmp3: {
+        level: 0,
+        help: "!ytdlmp3|Youtube video mp3 letöltő. !ytdlmp3 <url>",
+        run: (message) => {
+            require('./ytdlmp3.js').dlmp3(message.content.split(' ')[1], message);
+        }
+    },
     close: {
         level: 2,
         help: "!close|Maiia leállítása.",

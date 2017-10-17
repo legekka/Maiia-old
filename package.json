@@ -10,6 +10,7 @@
         "irc": "^0.5.2",
         "md5": "^2.2.1",
         "webp-converter": "^2.1.6",
-        "websocket": "^1.0.24"
+        "websocket": "^1.0.24",
+        "ytdl-core": "^0.18.1"
     }
 }
