@@ -63,7 +63,9 @@ maiia.on('exit', (code) => {
         }
         default: {
             log(`Error code: ${code}`);
+            inpdata("close");
             childproc = undefined;
+            maiia.emit('start');
             return;
         }
     }

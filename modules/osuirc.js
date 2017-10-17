@@ -88,10 +88,14 @@ module.exports = {
             if (core.discord.active) {
                 console.irc("Disconnected")
                 core.discord.bot.channels.get(core.discord.channels.osuirc).send('**IRC Disconnected**');
-                core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).bulkDelete(5).then(() => {
-                    core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).send("-- Disconnected --").then(() => {
+                core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).fetchMessage(core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).lastMessageID).then((msg) => {
+                    msg.edit('-- Disconnected --').then(() => {
                         return callback();
                     });
+                }).catch((result) => {
+                    core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).send('-- Disconnected --').then(() => {
+                        return callback();
+                    })
                 });
             } else {
                 return callback();
@@ -144,9 +148,13 @@ function getUserlist(channel) {
         for (i in userlist) {
             str += userlist[i] + '\n';
         }
-        core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).bulkDelete(5).then(()=>{
-            core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).send('Online: ' + (userlist.length - 1) + '\nChannel: `' + core.osuirc.channel + '`\n```' + str + '```');    
+
+        core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).fetchMessage(core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).lastMessageID).then((msg) => {
+            msg.edit('Online: ' + (userlist.length - 1) + '\nChannel: `' + core.osuirc.channel + '`\n```' + str + '```')
+        }).catch((result) => {
+            core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).send('Online: ' + (userlist.length - 1) + '\nChannel: `' + core.osuirc.channel + '`\n```' + str + '```')
         });
+
         core.discord.bot.channels.get(core.discord.channels.osuirc).setTopic("Current channel: " + core.osuirc.channel);
         core.discord.bot.channels.get(core.discord.channels.osuirc_userlist).setTopic("Current channel: " + core.osuirc.channel);
     }

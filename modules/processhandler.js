@@ -44,10 +44,10 @@ module.exports = {
                     process.exit(code);
                 }
             }, 500);
-            setTimeout(()=> {
+            setTimeout(() => {
                 console.maiia("Can't close after 20 seconds, force closing...");
                 process.exit(code);
-            },20000);
+            }, 20000);
         });
         process.on("uncaughtException", (error) => {
             console.log(error.stack);
