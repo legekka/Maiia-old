@@ -28,10 +28,15 @@ maiia.on('start', () => {
     childproc.on('close', (code) => maiia.emit('exit', code))
 });
 
-maiia.on('data', (data) => {
-    console.log(data.substr(0, data.length - 1));
-    if (connection) {
-        connection.sendUTF(data.substr(0, data.length - 1))
+maiia.on('data', (rawdata) => {
+    var data = rawdata.substr(0, rawdata.length - 1);
+    if (data == "{HB-Ping}") {
+        inpdata("{HB-Pong}");
+    } else {
+        console.log(data);
+        if (connection) {
+            connection.sendUTF(data)
+        }
     }
 });
 

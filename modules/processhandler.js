@@ -38,8 +38,14 @@ module.exports = {
                 console.maiia('CacheManager interval cleared.');
                 cachemanager = false;
             }
+            let framehb = core.framehb.interval ? true : false;
+            if (framehb) {
+                clearInterval(core.framehb.interval);
+                console.maiia('Frame-HB interval cleared.');
+                framehb = false;
+            }
             var shutdownInterval = setInterval(() => {
-                if (!discord && !cachemanager && !osuirc) {
+                if (!discord && !cachemanager && !osuirc && !framehb) {
                     console.maiia('Every subprocess have been stopped.')
                     process.exit(code);
                 }

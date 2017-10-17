@@ -12,6 +12,12 @@ console.maiia(`[${c.green("  OK  ")}] Processhandler`);
 require('./modules/processhandler.js').init();
 console.maiia(`[${c.green("  OK  ")}] JSconsole`);
 require('./modules/jsconsole.js').init();
+if (core.autorun.framehb) {
+    console.maiia(`[${c.green("  OK  ")}] Frame-HB`);
+    require("./modules/framehb.js").init();
+} else {
+    console.maiia(`[${c.grey("  --  ")}] Frame-HB`);
+}
 if (core.autorun.discord) {
     console.maiia(`[${c.green("  OK  ")}] Discord`);
     require("./modules/discord.js").init(); 
