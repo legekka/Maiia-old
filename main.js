@@ -44,6 +44,7 @@ if (core.autorun.osuirc) {
 }
 if (core.autorun.delmes) {
     console.maiia(`[${c.green("  OK  ")}] delmes`);
+    require("./modules/delmes.js").init();
 } else {
     console.maiia(`[${c.grey("  --  ")}] delmes`);
 }

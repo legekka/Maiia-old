@@ -2,16 +2,16 @@
 // delayed message module
 
 var fs = require('fs');
-var core = require('./core.js').get();
+var core = require('../core.js').get();
 var bot = core.discord.bot;
-
+var timers = [];
+var messages = [];
 module.exports = {
     init: () => {
-        var messages = JSON.parse(fs.readFileSync('./data/delmes.json').toString());
-        var timers = [];
+        messages = JSON.parse(fs.readFileSync('./data/delmes.json').toString());
         messages.forEach((element, index) => {
             date = new Date();
-            let delay = Math.round(element.date - (date.getHours * 3600 + new.date.getMinutes * 60));
+            let delay = Math.round(element.date - (date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds()));
             if (delay < 0) {
                 delay = 0;
                 messages.splice(index, 1);
@@ -36,7 +36,8 @@ module.exports = {
             date: date,
             type: type
         }
-        let delay = Math.round(element.date - (date.getHours * 3600 + new.date.getMinutes * 60));
+        let dateNow = new Date();
+        let delay = Math.round(message.date - (dateNow.getHours() * 3600 + dateNow.getMinutes() * 60 + dateNow.getSeconds()));  
         if (delay < 0) {
             delay = 0;
             message = undefined;
@@ -51,7 +52,7 @@ module.exports = {
                 });
             }, delay));
         }
-        if (!message) {
+        if (message != undefined) {
             messages.push(message);
         }
         fs.writeFileSync('./data/delmes.json', JSON.stringify(messages));

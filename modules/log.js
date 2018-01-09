@@ -40,7 +40,7 @@ function userColor(username) {
             } else {
                 return c.cyan(user.username);
             }*/
-            return c.cyan(user.username);
+            return c.cyan(username);
             break;
     }
 }

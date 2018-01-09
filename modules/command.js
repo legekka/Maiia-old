@@ -155,11 +155,11 @@ module.exports = {
         help: "!delmes|Késleltetett üzenet küldése valakinek. !delmes <to(discordID)> <xx:xx> <message>",
         run: (message) => {
             var msg = message.content;
-            var date = msg.splice(' ')[2];
-            var hours = date.splice(' ')[0] * 3600;
-            var time = hours + date.splice(':')[1] * 60;
+            var date = msg.split(' ')[2];
+            var hours = date.split(':')[0] * 3600;
+            var time = hours + date.split(':')[1] * 60;
             var mess = msg.substr(msg.indexOf(date) + date.length + 1);
-            if (require('./delmes.js').add(message.author.id, msg.splice(' ')[1], mess, time, "timed")) {
+            if (require('./delmes.js').add(message.author.id, msg.split(' ')[1], mess, time, "timed")) {
                 message.reply("Sikeresen eltároltam az üzenetet.");
             } else {
                 message.reply("Nem jó valami a dátummal.");
