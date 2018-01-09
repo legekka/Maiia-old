@@ -42,3 +42,8 @@ if (core.autorun.osuirc) {
 } else {
     console.maiia(`[${c.grey("  --  ")}] osu!irc`);
 }
+if (core.autorun.delmes) {
+    console.maiia(`[${c.green("  OK  ")}] delmes`);
+} else {
+    console.maiia(`[${c.grey("  --  ")}] delmes`);
+}

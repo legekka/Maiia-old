@@ -13,7 +13,7 @@ module.exports = {
             core.framehb.request = true;
             setTimeout(()=>{
                 if (core.framehb.request) {
-                    process.emit("uncaughtException", new Error("Lost IO link with the Frame - Closing lost this process."));
+                    process.emit("uncaughtException", new Error("Lost IO link with the Frame - Closing this lost process."));
                 }
             },2000);
         }, 5000);
