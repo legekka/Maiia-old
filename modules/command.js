@@ -157,7 +157,7 @@ module.exports = {
             var msg = message.content;
             var date = msg.splice(' ')[2];
             var hours = date.splice(' ')[0] * 3600;
-            var time = hours + date.splice(' ')[1] * 60;
+            var time = hours + date.splice(':')[1] * 60;
             var mess = msg.substr(msg.indexOf(date) + date.length + 1);
             if (require('./delmes.js').add(message.author.id, msg.splice(' ')[1], mess, time, "timed")) {
                 message.reply("Sikeresen eltároltam az üzenetet.");

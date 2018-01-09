@@ -3,6 +3,7 @@
 
 
 var core = require('../core.js').get();
+var console = require('./console.js');
 var limit = core.memwatch.limit;
 
 module.exports = {
