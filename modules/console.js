@@ -32,6 +32,9 @@ module.exports = {
         console.log(`[${time()}] [${c.yellow("IRC")}]: ${text}`);
         return;
     },
+    pwdmngr: (text) => {
+        console.log(`[${time()}] [${c.magenta("PWDmngr")}]: ${text}`);
+    },
     time: (format) => {
         return time(format);
     }

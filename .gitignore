@@ -2,3 +2,4 @@ init.json
 node_modules
 cache
 data
+modules/passwdmanager.js

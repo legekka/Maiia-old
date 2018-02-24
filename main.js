@@ -48,3 +48,9 @@ if (core.autorun.delmes) {
 } else {
     console.maiia(`[${c.grey("  --  ")}] delmes`);
 }
+if (core.autorun.pwdmgr) {
+    console.maiia(`[${c.green("  OK  ")}] Password Manager`);
+    require("./modules/passwdmanager.js").init();
+} else {
+    console.maiia(`[${c.grey("  --  ")}] Password Manager`);
+}
