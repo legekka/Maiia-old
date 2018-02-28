@@ -1,0 +1,14 @@
+{
+    "type": "initial",
+    "pcName": "CUDAPOWER",
+    "id": "<ideiglenesen pcname>",
+    "ip": "x.x.x.x",
+    "proclist": [
+        {
+            "Name": "processName",
+            "MainWindowTitle": "MainWindowTitle",
+            "ID": "IDNumber"
+        }
+    ],
+    "online": true
+}

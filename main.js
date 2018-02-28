@@ -20,7 +20,7 @@ if (core.autorun.framehb) {
 }
 if (core.autorun.discord) {
     console.maiia(`[${c.green("  OK  ")}] Discord`);
-    require("./modules/discord.js").init(); 
+    require("./modules/discord.js").init();
 } else {
     console.maiia(`[${c.grey("  --  ")}] Discord`);
 }
@@ -53,4 +53,20 @@ if (core.autorun.pwdmgr) {
     require("./modules/passwdmanager.js").init();
 } else {
     console.maiia(`[${c.grey("  --  ")}] Password Manager`);
+}
+if (core.autorun.blink) {
+    console.maiia(`[${c.green("  OK  ")}] Boltzmann Link`);
+    require("./modules/blink.js").init();
+} else {
+    console.maiia(`[${c.grey("  --  ")}] Boltzmann Link`);
+}
+if (core.autorun.mlink) {
+    console.maiia(`[${c.green("  OK  ")}] Maiia Link`);
+    require("./modules/mlink.js").init();
+    require("./modules/mlink.js").statusInit();
+    if (core.autorun.discord) {
+        require("./modules/mlink.js").discordStatusInit();
+    }
+} else {
+    console.maiia(`[${c.grey("  --  ")}] Maiia Link`);
 }

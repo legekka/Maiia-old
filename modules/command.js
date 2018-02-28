@@ -165,5 +165,15 @@ module.exports = {
                 message.reply("Nem jó valami a dátummal.");
             }
         }
+    },
+    startbot: {
+        level: 1,
+        help: "!startbot|Bot elindítása. !startbot <botname>",
+        run: (message) => {
+            var msg = message.content;
+            require('./blink.js').startbot(msg.split(' ')[1], (text) => {
+                message.channel.send(text);
+            });
+        }
     }
 }
